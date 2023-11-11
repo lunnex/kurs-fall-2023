@@ -1,0 +1,5 @@
+﻿  kursach.cpp
+C:\Users\ilyak\source\repos\lunnex\kursach\kursach\kursach.cpp(267,2): error C2065: Matrix: необъявленный идентификатор
+C:\Users\ilyak\source\repos\lunnex\kursach\kursach\kursach.cpp(267,9): error C2146: синтаксическая ошибка: отсутствие ";" перед идентификатором "m"
+C:\Users\ilyak\source\repos\lunnex\kursach\kursach\kursach.cpp(267,9): error C2065: m: необъявленный идентификатор
+C:\Users\ilyak\source\repos\lunnex\kursach\kursach\kursach.cpp(270,4): error C2065: m: необъявленный идентификатор

@@ -1,0 +1,3 @@
+﻿  kursach.cpp
+C:\Users\ilyak\source\repos\lunnex\kursach\kursach\kursach.cpp(15,17): warning C4849: Предложение "collapse" OpenMP игнорируется в директиве "for".
+  omp.vcxproj -> C:\Users\ilyak\source\repos\kurs-fall-2023\x64\Debug\omp.exe

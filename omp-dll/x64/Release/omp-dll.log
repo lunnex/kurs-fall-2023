@@ -1,0 +1,10 @@
+﻿  pch.cpp
+C:\Users\ilyak\source\repos\lunnex\kursach\kursach\kursach.cpp(73,34): warning C4244: =: преобразование "_Ty" в "int", возможна потеря данных
+          with
+          [
+              _Ty=double
+          ]
+C:\Users\ilyak\source\repos\kurs-fall-2023\omp-dll\pch.h(17,5): error C2084: функция "int Cols(char *)" уже имеет текст реализации
+C:\Users\ilyak\source\repos\lunnex\kursach\kursach\kursach.cpp(51,5): message : см. предыдущее определение "Cols"
+C:\Users\ilyak\source\repos\kurs-fall-2023\omp-dll\pch.h(25,5): error C2084: функция "int Rows(char *)" уже имеет текст реализации
+C:\Users\ilyak\source\repos\lunnex\kursach\kursach\kursach.cpp(59,5): message : см. предыдущее определение "Rows"

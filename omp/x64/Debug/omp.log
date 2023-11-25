@@ -1,3 +1,10 @@
 ﻿  kursach.cpp
-C:\Users\ilyak\source\repos\lunnex\kursach\kursach\kursach.cpp(15,17): warning C4849: Предложение "collapse" OpenMP игнорируется в директиве "for".
+C:\Users\ilyak\source\repos\lunnex\kursach\kursach\kursach.cpp(56,34): warning C4244: =: преобразование "_Ty" в "int", возможна потеря данных
+          with
+          [
+              _Ty=double
+          ]
+C:\Users\ilyak\source\repos\lunnex\kursach\kursach\kursach.cpp(74,13): warning C4849: Предложение "collapse" OpenMP игнорируется в директиве "for".
+C:\Users\ilyak\source\repos\lunnex\kursach\kursach\kursach.cpp(105,13): warning C4849: Предложение "collapse" OpenMP игнорируется в директиве "for".
+     Создается библиотека C:\Users\ilyak\source\repos\kurs-fall-2023\x64\Debug\omp.lib и объект C:\Users\ilyak\source\repos\kurs-fall-2023\x64\Debug\omp.exp
   omp.vcxproj -> C:\Users\ilyak\source\repos\kurs-fall-2023\x64\Debug\omp.exe

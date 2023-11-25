@@ -1,0 +1,12 @@
+﻿  pch.cpp
+C:\Users\ilyak\source\repos\kurs-fall-2023\omp-dll\pch.h(68,34): warning C4244: =: преобразование "_Ty" в "int", возможна потеря данных
+          with
+          [
+              _Ty=double
+          ]
+  dllmain.cpp
+     Создается библиотека C:\Users\ilyak\source\repos\kurs-fall-2023\x64\Debug\omp-dll.lib и объект C:\Users\ilyak\source\repos\kurs-fall-2023\x64\Debug\omp-dll.exp
+pch.obj : error LNK2019: ссылка на неразрешенный внешний символ "public: void __cdecl cv::Mat::copyTo(class cv::debug_build_guard::_OutputArray const &)const " (?copyTo@Mat@cv@@QEBAXAEBV_OutputArray@debug_build_guard@2@@Z) в функции "struct Picture __cdecl GetPicture(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >)" (?GetPicture@@YA?AUPicture@@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z).
+pch.obj : error LNK2019: ссылка на неразрешенный внешний символ "public: void __cdecl cv::Mat::convertTo(class cv::debug_build_guard::_OutputArray const &,int,double,double)const " (?convertTo@Mat@cv@@QEBAXAEBV_OutputArray@debug_build_guard@2@HNN@Z) в функции "struct Picture __cdecl GetPicture(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >)" (?GetPicture@@YA?AUPicture@@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z).
+pch.obj : error LNK2019: ссылка на неразрешенный внешний символ "double __cdecl cv::threshold(class cv::debug_build_guard::_InputArray const &,class cv::debug_build_guard::_OutputArray const &,double,double,int)" (?threshold@cv@@YANAEBV_InputArray@debug_build_guard@1@AEBV_OutputArray@31@NNH@Z) в функции "struct Picture __cdecl GetPicture(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >)" (?GetPicture@@YA?AUPicture@@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z).
+C:\Users\ilyak\source\repos\kurs-fall-2023\x64\Debug\omp-dll.dll : fatal error LNK1120: неразрешенных внешних элементов: 3

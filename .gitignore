@@ -4,6 +4,7 @@
 *.vsidx
 *.pdb
 **/v17
+**/opencv
 
 # Compiled Object files
 *.slo

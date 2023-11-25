@@ -1,0 +1,13 @@
+﻿  kursach.cpp
+C:\Users\ilyak\source\repos\lunnex\kursach\kursach\kursach.cpp(56,34): warning C4244: =: преобразование "_Ty" в "int", возможна потеря данных
+          with
+          [
+              _Ty=double
+          ]
+C:\Users\ilyak\source\repos\lunnex\kursach\kursach\kursach.cpp(74,13): warning C4849: Предложение "collapse" OpenMP игнорируется в директиве "for".
+C:\Users\ilyak\source\repos\lunnex\kursach\kursach\kursach.cpp(105,13): warning C4849: Предложение "collapse" OpenMP игнорируется в директиве "for".
+     Создается библиотека C:\Users\ilyak\source\repos\kurs-fall-2023\x64\Release\omp.lib и объект C:\Users\ilyak\source\repos\kurs-fall-2023\x64\Release\omp.exp
+kursach.obj : error LNK2001: неразрешенный внешний символ "double __cdecl cv::threshold(class cv::_InputArray const &,class cv::_OutputArray const &,double,double,int)" (?threshold@cv@@YANAEBV_InputArray@1@AEBV_OutputArray@1@NNH@Z).
+kursach.obj : error LNK2001: неразрешенный внешний символ "public: void __cdecl cv::Mat::convertTo(class cv::_OutputArray const &,int,double,double)const " (?convertTo@Mat@cv@@QEBAXAEBV_OutputArray@2@HNN@Z).
+kursach.obj : error LNK2001: неразрешенный внешний символ "public: void __cdecl cv::Mat::copyTo(class cv::_OutputArray const &)const " (?copyTo@Mat@cv@@QEBAXAEBV_OutputArray@2@@Z).
+C:\Users\ilyak\source\repos\kurs-fall-2023\x64\Release\omp.exe : fatal error LNK1120: неразрешенных внешних элементов: 3

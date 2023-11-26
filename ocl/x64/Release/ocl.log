@@ -1,6 +1,12 @@
 ﻿  Source.cpp
+C:\Users\ilyak\source\repos\lunnex\kursach\kursach-ocl\Source.cpp(158,53): warning C4244: =: преобразование "_Ty" в "int", возможна потеря данных
+          with
+          [
+              _Ty=double
+          ]
+C:\Users\ilyak\source\repos\lunnex\kursach\kursach-ocl\Source.cpp(209,8): warning C4101: path: неиспользованная локальная переменная
   Создание кода
-  Previous IPDB not found, fall back to full compilation.
-  All 155 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Previous IPDB and IOBJ mismatch, fall back to full compilation.
+  All 236 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
   Создание кода завершено
   ocl.vcxproj -> C:\Users\ilyak\source\repos\kurs-fall-2023\x64\Release\ocl.exe

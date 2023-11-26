@@ -121,6 +121,8 @@ int* Dilatation(int kernel, char* path)
 	return ToResult(picture.ptrDstCopy, picture.rows, picture.cols);
 }
 
+extern "C"
+__declspec(dllexport)
 int* Erosion(int kernel, char* path)
 {
 	int WHITE = 1;

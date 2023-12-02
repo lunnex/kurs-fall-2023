@@ -13,6 +13,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "omp-dll", "omp-dll\omp-dll.
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ocl-dll", "ocl-dll\ocl-dll.vcxproj", "{BB340298-28FC-4F43-AA66-CE748750E575}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "sequence-dll", "sequence-dll\sequence-dll.vcxproj", "{A2C905C3-3E48-4414-B5C0-59F0B38CFB0B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -61,6 +63,14 @@ Global
 		{BB340298-28FC-4F43-AA66-CE748750E575}.Release|x64.Build.0 = Release|x64
 		{BB340298-28FC-4F43-AA66-CE748750E575}.Release|x86.ActiveCfg = Release|Win32
 		{BB340298-28FC-4F43-AA66-CE748750E575}.Release|x86.Build.0 = Release|Win32
+		{A2C905C3-3E48-4414-B5C0-59F0B38CFB0B}.Debug|x64.ActiveCfg = Debug|x64
+		{A2C905C3-3E48-4414-B5C0-59F0B38CFB0B}.Debug|x64.Build.0 = Debug|x64
+		{A2C905C3-3E48-4414-B5C0-59F0B38CFB0B}.Debug|x86.ActiveCfg = Debug|Win32
+		{A2C905C3-3E48-4414-B5C0-59F0B38CFB0B}.Debug|x86.Build.0 = Debug|Win32
+		{A2C905C3-3E48-4414-B5C0-59F0B38CFB0B}.Release|x64.ActiveCfg = Release|x64
+		{A2C905C3-3E48-4414-B5C0-59F0B38CFB0B}.Release|x64.Build.0 = Release|x64
+		{A2C905C3-3E48-4414-B5C0-59F0B38CFB0B}.Release|x86.ActiveCfg = Release|Win32
+		{A2C905C3-3E48-4414-B5C0-59F0B38CFB0B}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

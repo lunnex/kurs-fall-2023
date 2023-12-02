@@ -4,6 +4,12 @@
 // Однако изменение любого из приведенных здесь файлов между операциями сборки приведет к повторной компиляции всех(!) этих файлов.
 // Не добавляйте сюда файлы, которые планируете часто изменять, так как в этом случае выигрыша в производительности не будет.
 
+// pch.h: это предварительно скомпилированный заголовочный файл.
+// Перечисленные ниже файлы компилируются только один раз, что ускоряет последующие сборки.
+// Это также влияет на работу IntelliSense, включая многие функции просмотра и завершения кода.
+// Однако изменение любого из приведенных здесь файлов между операциями сборки приведет к повторной компиляции всех(!) этих файлов.
+// Не добавляйте сюда файлы, которые планируете часто изменять, так как в этом случае выигрыша в производительности не будет.
+
 #ifndef PCH_H
 #define PCH_H
 
@@ -61,7 +67,7 @@ extern "C"
 __declspec(dllexport)
 int Cols(char* path) {
 	auto picture = GetPicture(path);
-	
+
 	return picture.cols;
 }
 
@@ -98,9 +104,6 @@ int* Dilatation(int kernel, char* path)
 
 	Picture picture = GetPicture(path);
 
-	omp_set_num_threads(8);
-#pragma omp parallel default (shared)
-#pragma omp for schedule(dynamic) collapse(2)
 	for (int i = 0; i < picture.rows; i++) {
 		for (int j = 0; j < picture.cols; j++) {
 
@@ -132,13 +135,11 @@ int* Erosion(int kernel, char* path)
 {
 	int WHITE = 1;
 	int BLACK = 0;
+
 	auto begin = std::chrono::steady_clock::now();
 
 	Picture picture = GetPicture(path);
 
-	omp_set_num_threads(8);
-#pragma omp parallel default (shared)
-#pragma omp for schedule(dynamic) collapse(6)
 	for (int i = 0; i < picture.rows; i++) {
 		for (int j = 0; j < picture.cols; j++) {
 

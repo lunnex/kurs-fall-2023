@@ -324,10 +324,16 @@ extern "C"
 __declspec(dllexport)
 int* Dilatation(int size, char* path)
 {
+	auto begin = std::chrono::steady_clock::now();
 
 	cl_device_id* devices = configureDevices();
 	int* result =  dilatation_ocl(devices, size, path);
 	disposeDevices(devices);
+
+	auto end = std::chrono::steady_clock::now();
+	auto elapsed_ms = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
+	std::cout << elapsed_ms.count();
+
 	return result;
 }
 
@@ -336,7 +342,8 @@ __declspec(dllexport)
 int* Erosion(int size, string path)
 {
 	cl_device_id* devices = configureDevices();
-	return erode_ocl(devices, size, path);
-	//disposeDevices(devices);
+	int* result = erode_ocl(devices, size, path);
+	disposeDevices(devices);
+	return result;
 }
 #endif //PCH_H

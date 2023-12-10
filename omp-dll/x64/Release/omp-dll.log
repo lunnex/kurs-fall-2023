@@ -1,5 +1,5 @@
 ﻿  pch.cpp
-C:\Users\ilyak\source\repos\kurs-fall-2023\omp-dll\pch.h(84,34): warning C4244: =: преобразование "_Ty" в "int", возможна потеря данных
+C:\Users\ilyak\source\repos\kurs-fall-2023\omp-dll\pch.h(94,34): warning C4244: =: преобразование "_Ty" в "int", возможна потеря данных
           with
           [
               _Ty=double
@@ -7,7 +7,7 @@ C:\Users\ilyak\source\repos\kurs-fall-2023\omp-dll\pch.h(84,34): warning C4244: 
   dllmain.cpp
      Создается библиотека C:\Users\ilyak\source\repos\kurs-fall-2023\x64\Release\omp-dll.lib и объект C:\Users\ilyak\source\repos\kurs-fall-2023\x64\Release\omp-dll.exp
   Создание кода
-  0 of 193 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
+  4 of 189 functions ( 2.1%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
     0 functions had inline decision re-evaluated but remain unchanged
   Создание кода завершено

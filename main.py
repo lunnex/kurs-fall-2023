@@ -34,7 +34,7 @@ class Login(QMainWindow):
         print("\n")
 #hllDll = ctypes.CDLL(r"C:\Users\ilyak\source\repos\kurs-fall-2023\x64\Release\ocl-dll.dll")
 
-        picPath = r"C:\Users\ilyak\source\repos\kurs-fall-2023\pic2.PNG".encode('utf-8')
+        picPath = r"C:\Users\ilyak\source\repos\kurs-fall-2023\pic3.PNG".encode('utf-8')
 
         hllDll.Cols.restype = ctypes.c_int
         hllDll.Cols.argtype = ctypes.POINTER(ctypes.c_char)
@@ -49,10 +49,14 @@ class Login(QMainWindow):
 
         array = (ctypes.c_int * cols * rows)()
 
-        hllDll.Dilatation.restype = ctypes.POINTER(ctypes.c_int)
-        hllDll.Dilatation.argtypes = [ctypes.c_int, ctypes.POINTER(ctypes.c_char)]
-
-        ret = hllDll.Dilatation(self.ui.horizontalSlider.value(), picPath)
+        if (self.ui.rb_dilatation.isChecked()):
+            hllDll.Dilatation.restype = ctypes.POINTER(ctypes.c_int)
+            hllDll.Dilatation.argtypes = [ctypes.c_int, ctypes.POINTER(ctypes.c_char)]
+            ret = hllDll.Dilatation(self.ui.horizontalSlider.value(), picPath)
+        else:
+            hllDll.Erosion.restype = ctypes.POINTER(ctypes.c_int)
+            hllDll.Erosion.argtypes = [ctypes.c_int, ctypes.POINTER(ctypes.c_char)]
+            ret = hllDll.Erosion(self.ui.horizontalSlider.value(), picPath)
 
         shape = (rows, cols, 4)
         x = np.zeros(shape)
@@ -64,7 +68,7 @@ class Login(QMainWindow):
                 else:
                     x[i][j] = [0, 0, 0, 255]
 
-        a = cv2.imread(r"C:\Users\ilyak\source\repos\kurs-fall-2023\pic1.PNG")
+        a = cv2.imread(r"C:\Users\ilyak\source\repos\kurs-fall-2023\pic.PNG")
 
 
         vis2 = cv2.cvtColor(x.astype((np.uint8)), cv2.COLOR_RGB2BGR)

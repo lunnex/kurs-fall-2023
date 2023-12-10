@@ -14,8 +14,8 @@ __kernel void Dilatation(__global int* regionpointer, __global int* inputSingle,
             transformed[i][j] = inputSingle[i * _n + j];
         }
     }
-
-    for (int i = 0; i < _n; i++) {
+	
+	int i = get_global_id(0);
         for (int j = 0; j < _m; j++) {
 
             if (input[i][j] == BLACK) {
@@ -25,19 +25,12 @@ __kernel void Dilatation(__global int* regionpointer, __global int* inputSingle,
                     for (int l = j - regionsize / 2; l < j + regionsize / 2; l++)
                     {
                         if (k >= 0 && l >= 0 && k + regionsize / 2 < _n && l + regionsize / 2 < _m)
-                            transformed[k][l] = BLACK;
+                            outputSingle[k * _n + l] = BLACK;
                     }
                 }
 
             }
         }
-    }
-
-    for(int i = 0; i < _n; i++){
-        for(int j = 0; j < _n; j++){
-            outputSingle[i * _n + j] = transformed[i][j];
-        }
-    }
 }
 
 __kernel void Erosion(__global int* regionpointer, __global int* inputSingle, __global int* outputSingle)
@@ -56,8 +49,8 @@ __kernel void Erosion(__global int* regionpointer, __global int* inputSingle, __
             transformed[i][j] = inputSingle[i * _n + j];
         }
     }
-
-    for (int i = 0; i < _n; i++) {
+	
+	int i = get_global_id(0);
         for (int j = 0; j < _m; j++) {
 
             if (input[i][j] == WHITE) {
@@ -67,17 +60,10 @@ __kernel void Erosion(__global int* regionpointer, __global int* inputSingle, __
                     for (int l = j - regionsize / 2; l < j + regionsize / 2; l++)
                     {
                         if (k >= 0 && l >= 0 && k + regionsize / 2 < _n && l + regionsize / 2 < _m)
-                            transformed[k][l] = WHITE;
+                            outputSingle[k * _n + l] = WHITE;
                     }
                 }
 
             }
         }
-    }
-
-    for(int i = 0; i < _n; i++){
-        for(int j = 0; j < _n; j++){
-            outputSingle[i * _n + j] = transformed[i][j];
-        }
-    }
 }

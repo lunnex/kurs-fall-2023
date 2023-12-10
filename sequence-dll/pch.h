@@ -101,7 +101,6 @@ int* Dilatation(int kernel, char* path)
 	int WHITE = 1;
 	int BLACK = 0;
 	auto begin = std::chrono::steady_clock::now();
-
 	Picture picture = GetPicture(path);
 
 	for (int i = 0; i < picture.rows; i++) {
@@ -124,7 +123,7 @@ int* Dilatation(int kernel, char* path)
 
 	auto end = std::chrono::steady_clock::now();
 	auto elapsed_ms = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
-	std::cout << elapsed_ms.count();
+	std::cout << elapsed_ms.count()/1000000000.;
 
 	return ToResult(picture.ptrDstCopy, picture.rows, picture.cols);
 }
@@ -135,9 +134,7 @@ int* Erosion(int kernel, char* path)
 {
 	int WHITE = 1;
 	int BLACK = 0;
-
 	auto begin = std::chrono::steady_clock::now();
-
 	Picture picture = GetPicture(path);
 
 	for (int i = 0; i < picture.rows; i++) {

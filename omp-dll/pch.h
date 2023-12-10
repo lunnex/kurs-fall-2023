@@ -38,16 +38,26 @@ Picture GetPicture(std::string path)
 	picture.ptrDst = std::vector<std::vector<double>>(dst.rows);
 	picture.ptrDstCopy = std::vector<std::vector<double>>(dst.rows);
 
-	for (int i = 0; i < dst.rows; i++)
+#pragma omp parallel
 	{
-		dst.row(i).reshape(1, 1).copyTo(picture.ptrDst[i]);
-		dst.row(i).reshape(1, 1).copyTo(picture.ptrDstCopy[i]);
+#pragma omp for
+		for (int i = 0; i < dst.rows; i++)
+		{
+			
+
+			dst.row(i).reshape(1, 1).copyTo(picture.ptrDst[i]);
+			dst.row(i).reshape(1, 1).copyTo(picture.ptrDstCopy[i]);
+		}
 	}
 
-	for (int i = 0; i < dst.rows; i++) {
-		for (int j = 0; j < dst.cols; j++) {
-			picture.ptrDst[i][j] = (picture.ptrDst[i][j] == 255 ? 1 : 0);
-			picture.ptrDstCopy[i][j] = (picture.ptrDstCopy[i][j] == 255 ? 1 : 0);
+#pragma omp parallel
+	{
+#pragma omp for
+		for (int i = 0; i < dst.rows; i++) {
+			for (int j = 0; j < dst.cols; j++) {
+				picture.ptrDst[i][j] = (picture.ptrDst[i][j] == 255 ? 1 : 0);
+				picture.ptrDstCopy[i][j] = (picture.ptrDstCopy[i][j] == 255 ? 1 : 0);
+			}
 		}
 	}
 
@@ -94,34 +104,39 @@ int* Dilatation(int kernel, char* path)
 {
 	int WHITE = 1;
 	int BLACK = 0;
-	auto begin = std::chrono::steady_clock::now();
+
+	double itime, ftime, exec_time;
+	itime = omp_get_wtime();
+
 
 	Picture picture = GetPicture(path);
 
+
 	omp_set_num_threads(8);
-#pragma omp parallel default (shared)
-#pragma omp for schedule(dynamic) collapse(2)
-	for (int i = 0; i < picture.rows; i++) {
-		for (int j = 0; j < picture.cols; j++) {
+#pragma omp parallel
+	{
+#pragma omp for
+		for (int i = 0; i < picture.rows; i++) {
+			for (int j = 0; j < picture.cols; j++) {
 
-			if (picture.ptrDst[i][j] == BLACK) {
-
-				for (int k = i - kernel / 2; k < i + kernel / 2; k++)
-				{
-					for (int l = j - kernel / 2; l < j + kernel / 2; l++)
+				if (picture.ptrDst[i][j] == BLACK) {
+					for (int k = i - kernel / 2; k < i + kernel / 2; k++)
 					{
-						if (k >= 0 && l >= 0 && k + kernel / 2 < picture.rows && l + kernel / 2 < picture.cols)
-							picture.ptrDstCopy[k][l] = BLACK;
+						for (int l = j - kernel / 2; l < j + kernel / 2; l++)
+						{
+							if (k >= 0 && l >= 0 && k + kernel / 2 < picture.rows && l + kernel / 2 < picture.cols)
+								picture.ptrDstCopy[k][l] = BLACK;
+						}
 					}
-				}
 
+				}
 			}
 		}
 	}
 
-	auto end = std::chrono::steady_clock::now();
-	auto elapsed_ms = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
-	std::cout << elapsed_ms.count();
+	ftime = omp_get_wtime();
+	exec_time = ftime - itime;
+	std::cout << exec_time;
 
 	return ToResult(picture.ptrDstCopy, picture.rows, picture.cols);
 }
@@ -132,34 +147,37 @@ int* Erosion(int kernel, char* path)
 {
 	int WHITE = 1;
 	int BLACK = 0;
-	auto begin = std::chrono::steady_clock::now();
+	double itime, ftime, exec_time;
+	itime = omp_get_wtime();
 
 	Picture picture = GetPicture(path);
 
 	omp_set_num_threads(8);
-#pragma omp parallel default (shared)
-#pragma omp for schedule(dynamic) collapse(6)
-	for (int i = 0; i < picture.rows; i++) {
-		for (int j = 0; j < picture.cols; j++) {
+#pragma omp parallel
+	{
+#pragma omp for
+		for (int i = 0; i < picture.rows; i++) {
+			for (int j = 0; j < picture.cols; j++) {
 
-			if (picture.ptrDst[i][j] == WHITE) {
+				if (picture.ptrDst[i][j] == WHITE) {
 
-				for (int k = i - kernel / 2; k < i + kernel / 2; k++)
-				{
-					for (int l = j - kernel / 2; l < j + kernel / 2; l++)
+					for (int k = i - kernel / 2; k < i + kernel / 2; k++)
 					{
-						if (k >= 0 && l >= 0 && k + kernel / 2 < picture.rows && l + kernel / 2 < picture.cols)
-							picture.ptrDstCopy[k][l] = WHITE;
+						for (int l = j - kernel / 2; l < j + kernel / 2; l++)
+						{
+							if (k >= 0 && l >= 0 && k + kernel / 2 < picture.rows && l + kernel / 2 < picture.cols)
+								picture.ptrDstCopy[k][l] = WHITE;
+						}
 					}
-				}
 
+				}
 			}
 		}
 	}
 
-	auto end = std::chrono::steady_clock::now();
-	auto elapsed_ms = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
-	std::cout << elapsed_ms.count();
+	ftime = omp_get_wtime();
+	exec_time = ftime - itime;
+	std::cout << exec_time;
 
 	return ToResult(picture.ptrDstCopy, picture.rows, picture.cols);
 }

@@ -148,7 +148,7 @@ int* dilatation_ocl(cl_device_id* devices, int size, string path)
 	status = clBuildProgram(program, 1, devices, NULL, NULL,
 		NULL);
 
-	cout << "status";
+	//cout << "status";
 	cout << status;
 
 	if (status != CL_SUCCESS) {
@@ -196,10 +196,21 @@ int* dilatation_ocl(cl_device_id* devices, int size, string path)
 	status = clSetKernelArg(kernel, 2, sizeof(cl_mem),
 		(void*)&outputBuffer);
 
-	const size_t global_work_size[1] = { picture.rows * picture.cols };
+	const size_t global_work_size[1] = { picture.rows};
+
+
+
+	auto begin = std::chrono::steady_clock::now();
 
 	status = clEnqueueNDRangeKernel(commandQueue, kernel, 1,
 		NULL, global_work_size, NULL, 0, NULL, NULL);
+
+	auto end = std::chrono::steady_clock::now();
+	auto elapsed_ms = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
+	std::cout << elapsed_ms.count();
+
+
+
 
 	clEnqueueReadBuffer(commandQueue, outputBuffer, CL_TRUE, 0,
 		sizeof(int) * picture.rows * picture.cols, output, 0, NULL, NULL);
@@ -214,24 +225,21 @@ int* dilatation_ocl(cl_device_id* devices, int size, string path)
 	clReleaseContext(context);
 
 	return output;
-
-	
-
-	
 }
 
 int* erode_ocl(cl_device_id* devices, int size, string path)
 {
-	cout << "status";
 #pragma region program compilation
 	cl_context context = clCreateContext(NULL, 1, devices,
 		NULL, NULL, NULL);
 	cl_command_queue commandQueue =
 		clCreateCommandQueue(context, devices[0], 0, NULL);
-	const char* fileName = "source.cl";
+
+	const char* fileName = "C:\\Users\\ilyak\\source\\repos\\kurs-fall-2023\\ocl-dll\\source.cl";
 	std::string sourceStr;
 	cl_int status = convertToString(fileName, sourceStr);
 	const char* source = sourceStr.c_str();
+
 	size_t sizeOfSource[] = { strlen(source) };
 	cl_program program = clCreateProgramWithSource(context, 1,
 		&source, sizeOfSource, &status);
@@ -239,24 +247,27 @@ int* erode_ocl(cl_device_id* devices, int size, string path)
 	status = clBuildProgram(program, 1, devices, NULL, NULL,
 		NULL);
 
-	cout << "status";
+	//cout << "status";
 	cout << status;
 
 	if (status != CL_SUCCESS) {
 		static char log[65536];
 		memset(log, 0, sizeof(log));
 		clGetProgramBuildInfo(program, devices[0], CL_PROGRAM_BUILD_LOG, sizeof(log) - 1, log, NULL);
+		cout << log[10];
 		cout << log;
 	}
 
-#pragma endregion
 
-	int* regionSize = new int[1] {size};
+#pragma endregion
+	auto picture = GetPicture(path);
+
+
+	int* regionSize = new int[3] {size, picture.rows, picture.cols};
 	cl_mem regionSizeBuffer = clCreateBuffer(context,
 		CL_MEM_READ_WRITE | CL_MEM_COPY_HOST_PTR,
-		sizeof(int) * 1, regionSize, &status);
+		sizeof(int) * 3, regionSize, &status);
 
-	auto picture = GetPicture(path);
 
 	int* input = new int[picture.rows * picture.cols];
 
@@ -284,13 +295,25 @@ int* erode_ocl(cl_device_id* devices, int size, string path)
 	status = clSetKernelArg(kernel, 2, sizeof(cl_mem),
 		(void*)&outputBuffer);
 
-	const size_t global_work_size[1] = { 100 };
+	const size_t global_work_size[1] = { picture.rows };
+
+
+
+	auto begin = std::chrono::steady_clock::now();
 
 	status = clEnqueueNDRangeKernel(commandQueue, kernel, 1,
 		NULL, global_work_size, NULL, 0, NULL, NULL);
 
+	auto end = std::chrono::steady_clock::now();
+	auto elapsed_ms = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
+	std::cout << elapsed_ms.count();
+
+
+
+
 	clEnqueueReadBuffer(commandQueue, outputBuffer, CL_TRUE, 0,
 		sizeof(int) * picture.rows * picture.cols, output, 0, NULL, NULL);
+
 
 	clReleaseKernel(kernel);
 	clReleaseMemObject(regionSizeBuffer);
@@ -324,22 +347,15 @@ extern "C"
 __declspec(dllexport)
 int* Dilatation(int size, char* path)
 {
-	auto begin = std::chrono::steady_clock::now();
-
 	cl_device_id* devices = configureDevices();
 	int* result =  dilatation_ocl(devices, size, path);
 	disposeDevices(devices);
-
-	auto end = std::chrono::steady_clock::now();
-	auto elapsed_ms = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
-	std::cout << elapsed_ms.count();
-
 	return result;
 }
 
 extern "C"
 __declspec(dllexport)
-int* Erosion(int size, string path)
+int* Erosion(int size, char* path)
 {
 	cl_device_id* devices = configureDevices();
 	int* result = erode_ocl(devices, size, path);

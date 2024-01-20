@@ -6,6 +6,7 @@
 
 #ifndef PCH_H
 #define PCH_H
+#pragma warning(disable : 4996)
 
 // Добавьте сюда заголовочные файлы для предварительной компиляции
 #include "framework.h"
@@ -136,7 +137,7 @@ int* dilatation_ocl(cl_device_id* devices, int size, string path)
 	cl_command_queue commandQueue =
 		clCreateCommandQueue(context, devices[0], 0, NULL);
 
-	const char* fileName = "C:\\Users\\ilyak\\source\\repos\\kurs-fall-2023\\ocl-dll\\source.cl";
+	const char* fileName = "E:\\kurs-fall-2023\\ocl-dll\\source.cl";
 	std::string sourceStr;
 	cl_int status = convertToString(fileName, sourceStr);
 	const char* source = sourceStr.c_str();

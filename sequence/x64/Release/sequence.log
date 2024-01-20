@@ -1,13 +1,8 @@
 ﻿  kursach.cpp
-C:\Users\ilyak\source\repos\lunnex\kursach\kursach\kursach.cpp(57,34): warning C4244: =: преобразование "_Ty" в "int", возможна потеря данных
-          with
-          [
-              _Ty=double
-          ]
-     Создается библиотека C:\Users\ilyak\source\repos\kurs-fall-2023\x64\Release\sequence.lib и объект C:\Users\ilyak\source\repos\kurs-fall-2023\x64\Release\sequence.exp
-  Создание кода
-  3 of 199 functions ( 1.5%) were compiled, the rest were copied from previous compilation.
-    0 functions were new in current compilation
-    1 functions had inline decision re-evaluated but remain unchanged
-  Создание кода завершено
-  sequence.vcxproj -> C:\Users\ilyak\source\repos\kurs-fall-2023\x64\Release\sequence.exe
+  MorphologyTransformation.cpp
+/lunnex/kursach/kursach/kursach.cpp(1,1): error C1083: Не удается открыть файл источник: ..\..\lunnex\kursach\kursach\kursach.cpp: No such file or directory,
+  (компиляция исходного файла "/lunnex/kursach/kursach/kursach.cpp")
+  
+/lunnex/kursach/kursach/MorphologyTransformation.cpp(1,1): error C1083: Не удается открыть файл источник: ..\..\lunnex\kursach\kursach\MorphologyTransformation.cpp: No such file or directory,
+  (компиляция исходного файла "/lunnex/kursach/kursach/MorphologyTransformation.cpp")
+  

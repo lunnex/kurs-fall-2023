@@ -1,0 +1,10 @@
+﻿  pch.cpp
+E:\kurs-fall-2023\sequence-dll\pch.h(90,34): warning C4244: =: преобразование "_Ty" в "int", возможна потеря данных
+E:\kurs-fall-2023\sequence-dll\pch.h(90,34): warning C4244:         with
+E:\kurs-fall-2023\sequence-dll\pch.h(90,34): warning C4244:         [
+E:\kurs-fall-2023\sequence-dll\pch.h(90,34): warning C4244:             _Ty=double
+E:\kurs-fall-2023\sequence-dll\pch.h(90,34): warning C4244:         ]
+  (компиляция исходного файла "pch.cpp")
+  
+  dllmain.cpp
+LINK : fatal error LNK1104: не удается открыть файл "opencv_world480.lib"

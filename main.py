@@ -19,22 +19,22 @@ class Login(QMainWindow):
         self.show()
 
     def execute(self):
-        os.add_dll_directory(r"C:\Users\ilyak\source\repos\kurs-fall-2023\opencv\build\x64\vc16\bin")
-        os.add_dll_directory(r"C:\Users\ilyak\source\repos\kurs-fall-2023\opencv\build\x64\vc16\bin")
+        os.add_dll_directory(r"E:\kurs-fall-2023\opencv\build\x64\vc16\bin")
+        os.add_dll_directory(r"E:\kurs-fall-2023\opencv\build\x64\vc16\bin")
 
-        hllDll = ctypes.CDLL(r"C:\Users\ilyak\source\repos\kurs-fall-2023\x64\Release\sequence-dll.dll")
+        hllDll = ctypes.CDLL(r"E:\kurs-fall-2023\x64\Release\sequence-dll.dll")
 
         if(self.ui.rb_sequence.isChecked()):
-            hllDll = ctypes.CDLL(r"C:\Users\ilyak\source\repos\kurs-fall-2023\x64\Release\sequence-dll.dll")
+            hllDll = ctypes.CDLL(r"E:\kurs-fall-2023\x64\Release\sequence-dll.dll")
         elif(self.ui.rb_omp.isChecked()):
-            hllDll = ctypes.CDLL(r"C:\Users\ilyak\source\repos\kurs-fall-2023\x64\Release\omp-dll.dll")
+            hllDll = ctypes.CDLL(r"E:\kurs-fall-2023\x64\Release\omp-dll.dll")
         elif (self.ui.rb_ocl.isChecked()):
-            hllDll = ctypes.CDLL(r"C:\Users\ilyak\source\repos\kurs-fall-2023\x64\Release\ocl-dll.dll")
+            hllDll = ctypes.CDLL(r"E:\kurs-fall-2023\x64\Release\ocl-dll.dll")
 
         print("\n")
 #hllDll = ctypes.CDLL(r"C:\Users\ilyak\source\repos\kurs-fall-2023\x64\Release\ocl-dll.dll")
 
-        picPath = r"C:\Users\ilyak\source\repos\kurs-fall-2023\pic3.PNG".encode('utf-8')
+        picPath = r"E:\kurs-fall-2023\pic3.PNG".encode('utf-8')
 
         hllDll.Cols.restype = ctypes.c_int
         hllDll.Cols.argtype = ctypes.POINTER(ctypes.c_char)
@@ -67,8 +67,6 @@ class Login(QMainWindow):
                     x[i][j] = [255, 255, 255, 255]
                 else:
                     x[i][j] = [0, 0, 0, 255]
-
-        a = cv2.imread(r"C:\Users\ilyak\source\repos\kurs-fall-2023\pic.PNG")
 
 
         vis2 = cv2.cvtColor(x.astype((np.uint8)), cv2.COLOR_RGB2BGR)

@@ -150,7 +150,7 @@ int* dilatation_ocl(cl_device_id* devices, int size, string path)
 		NULL);
 
 	//cout << "status";
-	cout << status;
+	//cout << status;
 
 	if (status != CL_SUCCESS) {
 		static char log[65536];
@@ -208,7 +208,7 @@ int* dilatation_ocl(cl_device_id* devices, int size, string path)
 
 	auto end = std::chrono::steady_clock::now();
 	auto elapsed_ms = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
-	std::cout << elapsed_ms.count();
+	std::cout << elapsed_ms.count() / 1000000000.0;
 
 
 
@@ -236,7 +236,7 @@ int* erode_ocl(cl_device_id* devices, int size, string path)
 	cl_command_queue commandQueue =
 		clCreateCommandQueue(context, devices[0], 0, NULL);
 
-	const char* fileName = "C:\\Users\\ilyak\\source\\repos\\kurs-fall-2023\\ocl-dll\\source.cl";
+	const char* fileName = "E:\\kurs-fall-2023\\ocl-dll\\source.cl";
 	std::string sourceStr;
 	cl_int status = convertToString(fileName, sourceStr);
 	const char* source = sourceStr.c_str();
@@ -249,7 +249,7 @@ int* erode_ocl(cl_device_id* devices, int size, string path)
 		NULL);
 
 	//cout << "status";
-	cout << status;
+	//cout << status;
 
 	if (status != CL_SUCCESS) {
 		static char log[65536];
@@ -307,7 +307,7 @@ int* erode_ocl(cl_device_id* devices, int size, string path)
 
 	auto end = std::chrono::steady_clock::now();
 	auto elapsed_ms = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
-	std::cout << elapsed_ms.count();
+	std::cout << elapsed_ms.count() / 1000000000.0;
 
 
 
